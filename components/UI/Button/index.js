@@ -2,9 +2,17 @@ import React from 'react'
 
 const Button = (props) => {
   return (
-    <div className="border border-neutral-400 px-4 py-1.5 text-gray-900  rounded-lg active:border-red-800 active:bg-red-800 active:text-white text-sm font-medium text-center min-w-[52px]">
+    <button
+      type="button"
+      onClick={props.onClick}
+      className={`${
+        props.view
+          ? 'border-red-800 bg-red-800 text-white'
+          : 'border-neutral-400 bg-white'
+      } border  px-4 py-1.5 text-gray-900  rounded-lg  text-sm font-medium text-center min-w-[52px] `}
+    >
       {props.children}
-    </div>
+    </button>
   )
 }
 

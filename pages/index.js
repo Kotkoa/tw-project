@@ -13,7 +13,6 @@ export default function Home() {
       </Head>
       <div className="">
         <Converter />
-        <p className="text-red-500">Any</p>
       </div>
       <footer className={styles.footer}>
         <a href="#" rel="noopener noreferrer">
