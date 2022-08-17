@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import InputBorder from '../UI/InputBorder'
+import InputBorder from '../InputBorder'
 import Button from '../UI/Button'
-import MetricSelector from '../UI/MetricSelector'
+import MetricSelector from '../MetricSelector'
 
 const Converter = (props) => {
   const [metricWeight, setMetricWeight] = useState(true)
