@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import InputBorder from '../InputBorder'
-import Button from '../UI/Button'
 import MetricSelector from '../MetricSelector'
 
 const Converter = (props) => {
