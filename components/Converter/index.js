@@ -27,7 +27,7 @@ const Converter = (props) => {
 
     if (!metricWeight) {
       const weightKGtoLBS = Math.floor(inputWeight * 2.2)
-      return weightValueLBS
+      return weightKGtoLBS
     }
   }
 
