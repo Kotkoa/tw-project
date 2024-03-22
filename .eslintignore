@@ -1,0 +1,11 @@
+node_modules/
+public/
+.cache/
+.next/
+build/
+.vscode/
+.idea/
+.eslintrc.js
+prettier.config.js
+postcss.config.js
+next.config.js
