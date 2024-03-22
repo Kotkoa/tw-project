@@ -16,6 +16,7 @@ The Weight Converter is a modern, user-friendly web application that allows user
 
 - React 18
 - Next.js 14.1.4
+- TypeScript 5.0.3
 - TailwindCSS 3.3.0
 - Vercel (Deployment)
 
