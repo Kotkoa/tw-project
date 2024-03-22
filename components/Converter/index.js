@@ -8,26 +8,20 @@ const Converter = (props) => {
 
   const changeMetric = () => setMetricWeight((prevState) => !prevState)
 
-  const handleChangeWeight = ({ target: { value } }) => {
-    if (metricWeight) {
-      return setInputWeight(value)
-    }
-
-    if (!metricWeight) {
-      const weightLBStoKG = Math.floor(inputWeight * 2.2)
-      return setInputWeight(weightLBStoKG)
-    }
+  const handleChangeWeight = (e) => {
+    setInputWeight(e.target.value)
   }
 
-  //finish at this place
   const displayWeight = () => {
-    if (metricWeight) {
-      return inputWeight
-    }
+    if (inputWeight === '') return ''
 
-    if (!metricWeight) {
-      const weightKGtoLBS = Math.floor(inputWeight * 2.2)
-      return weightKGtoLBS
+    const weight = parseFloat(inputWeight)
+    if (isNaN(weight)) return 'Invalid input' // Basic validation
+
+    if (metricWeight) {
+      return weight // Assuming the input is always in KGs
+    } else {
+      return Math.floor(weight * 2.20462) // Convert KGs to LBS for display
     }
   }
 
@@ -39,10 +33,10 @@ const Converter = (props) => {
           className="flex flex-row justify-between mb-5"
         >
           <input
-            value={displayWeight}
+            type="text"
+            value={displayWeight()}
             onChange={handleChangeWeight}
             placeholder="0"
-            type="text"
             className="w-full bg-white outline-none"
           />
           <MetricSelector changeMetric={changeMetric} isMetric={metricWeight} />

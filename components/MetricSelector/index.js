@@ -24,7 +24,7 @@ function MetricSelector(props) {
         CM
       </Button>
       <Button onClick={handleClickIN} isMetric={!isMetric}>
-        IN
+        LBS
       </Button>
     </div>
   )
