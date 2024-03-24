@@ -1,9 +1,10 @@
 import React, { ChangeEvent, useState } from 'react';
-import InputBorder from '../InputBorder';
-import MetricSelector from '../MetricSelector';
-import { displayWeight } from '@/utils/display-weight';
 
-const Converter = () => {
+import { displayWeight } from '@/utils/display-weight';
+import { InputBorder } from '../InputBorder';
+import { MetricSelector } from '../MetricSelector';
+
+export const Converter = () => {
   const [metricWeight, setMetricWeight] = useState(true);
   const [value, setValue] = useState<number | null>(null);
 
@@ -29,5 +30,3 @@ const Converter = () => {
     </form>
   );
 };
-
-export default Converter;

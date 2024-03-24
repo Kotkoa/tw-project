@@ -7,7 +7,7 @@ type InputBorderProps = {
   children: React.ReactNode;
 };
 
-const InputBorder = ({ name, error, className, children }: InputBorderProps) => {
+export const InputBorder = ({ name, error, className, children }: InputBorderProps) => {
   return (
     <div className="relative -mt-2 flex flex-col justify-start">
       <label className="neutral-600 mb-2 text-base font-light capitalize after:ml-0.5 after:text-red-800 after:content-['*']">
@@ -22,5 +22,3 @@ const InputBorder = ({ name, error, className, children }: InputBorderProps) => 
     </div>
   );
 };
-
-export default InputBorder;
