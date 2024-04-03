@@ -3,10 +3,11 @@ import { Converter } from '@/components/Converter';
 import { Tab } from '@headlessui/react';
 import { SimpleForm } from '@/components/SimpleForm';
 import classNames from 'classnames';
+import { WaitList } from '@/components/WaitList';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const tabList = ['Conveter', 'Simple form', 'Tab 3'];
+const tabList = ['Conveter', 'Simple form', 'Waitlist'];
 
 export default function Home() {
   return (
@@ -38,7 +39,9 @@ export default function Home() {
             <Tab.Panel>
               <SimpleForm />
             </Tab.Panel>
-            <Tab.Panel>Content 3</Tab.Panel>
+            <Tab.Panel>
+              <WaitList />
+            </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
       </div>

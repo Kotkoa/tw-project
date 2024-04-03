@@ -11,15 +11,16 @@
   "dependencies": {
     "next": "14.1.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-helmet": "^6.1.0"
   },
   "devDependencies": {
+    "@headlessui/react": "^1.7.18",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@headlessui/react": "^1.7.18",
-    "classnames": "^2.5.1",
     "autoprefixer": "^10.0.1",
+    "classnames": "^2.5.1",
     "eslint": "^8",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
