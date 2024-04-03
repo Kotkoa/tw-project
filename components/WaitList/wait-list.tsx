@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import { validateEmail } from '@/utils/validate-email';
 import ClipLoader from 'react-spinners/ClipLoader';
 
@@ -16,9 +16,13 @@ type WaitlistResponse = {
 
 export const WaitList: FC = () => {
   const [waitlistData, setWaitlistData] = useState<WaitlistResponse | null>(null);
+  const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
+
+  //TODO: Consider separating the logic for the API call into a separate function or custom hook. This makes your component cleaner and the logic reusable.
   const submitWaitlist = (data: WaitlistData) => {
     if (!data.email) {
       setError('Please enter your email');
@@ -29,11 +33,13 @@ export const WaitList: FC = () => {
       return;
     }
 
+    setError('');
     setLoading(true);
 
     data.waitlist_id = 15316;
     data.referral_link = document.URL;
 
+    //TODO:Hardcoding URLs in your fetch requests isn't flexible or secure. Use environment variables instead fetch(`${process.env.REACT_APP_API_URL}/api/v1/signup`
     fetch('https://api.getwaitlist.com/api/v1/signup', {
       method: 'POST',
       headers: {
@@ -41,20 +47,40 @@ export const WaitList: FC = () => {
       },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then((data) => {
         setWaitlistData(data);
         setLoading(false);
       })
       .catch((error) => {
+        console.error('There has been a problem with your fetch operation:', error);
         setLoading(false);
       });
+  };
+
+  const handleSubmit = () => {
+    if (email) {
+      submitWaitlist({ email });
+    } else {
+      console.error('Email input element not found');
+    }
   };
 
   return (
     <div className="flex h-full w-full p-6">
       {!waitlistData ? (
-        <form className="w-full">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit();
+          }}
+          className="w-full"
+        >
           <div className="flex flex-col space-y-4">
             <div className="flex flex-col space-y-2">
               <label htmlFor="email" className="text-gray-700">
@@ -66,7 +92,8 @@ export const WaitList: FC = () => {
                 type="email"
                 placeholder="Please enter your email"
                 autoComplete="email"
-                onChange={(e) => e.stopPropagation()}
+                value={email}
+                onChange={handleEmailChange}
                 required
                 className="rounded-md border border-gray-200 p-2 text-base text-gray-700"
               />
@@ -94,7 +121,11 @@ export const WaitList: FC = () => {
                 'Sign up for the waitlist'
               )}
             </button>
-            {error && <div className="mt-2 px-6 text-center text-xs text-red-500">{error}</div>}
+            {error && (
+              <div aria-live="assertive" className="mt-2 px-6 text-center text-xs text-red-500">
+                {error}
+              </div>
+            )}
           </div>
         </form>
       ) : (
