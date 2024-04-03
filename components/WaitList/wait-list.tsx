@@ -9,9 +9,17 @@ type WaitlistData = {
 };
 
 type WaitlistResponse = {
-  priority: number | string;
+  priority: number;
   referral_link: string;
   total_referrals: number;
+  uuid: string;
+  verified: boolean | string;
+  email: string;
+  referral_token: string;
+  referred_by_signup_token: string | null;
+  created_at: string;
+  removed_date: string | null;
+  removed_priority: number | null;
 };
 
 export const WaitList: FC = () => {
