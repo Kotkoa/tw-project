@@ -4,8 +4,8 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 type WaitlistData = {
   email: string;
-  waitlist_id?: number;
-  referral_link?: string;
+  waitlistId?: number;
+  referralLink?: string;
 };
 
 type WaitlistResponse = {
@@ -32,20 +32,12 @@ export const WaitList: FC = () => {
 
   //TODO: Consider separating the logic for the API call into a separate function or custom hook. This makes your component cleaner and the logic reusable.
   const submitWaitlist = (data: WaitlistData) => {
-    if (!data.email) {
-      setError('Please enter your email');
-      return;
-    }
     if (validateEmail(data.email) === false) {
       setError('Please enter a valid email');
       return;
     }
-
     setError('');
     setLoading(true);
-
-    data.waitlist_id = 15316;
-    data.referral_link = document.URL;
 
     //TODO:Hardcoding URLs in your fetch requests isn't flexible or secure. Use environment variables instead fetch(`${process.env.REACT_APP_API_URL}/api/v1/signup`
     fetch('https://api.getwaitlist.com/api/v1/signup', {
@@ -72,10 +64,15 @@ export const WaitList: FC = () => {
   };
 
   const handleSubmit = () => {
+    const waitlistId = 15316;
+    const referralLink = document.URL;
+
     if (email) {
-      submitWaitlist({ email });
+      submitWaitlist({ email, waitlistId, referralLink });
     } else {
       console.error('Email input element not found');
+      setError('Please enter your email');
+      return;
     }
   };
 
